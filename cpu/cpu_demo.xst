@@ -1,0 +1,9 @@
+set -tmpdir "build"
+run
+-ifn source/cpu/cpu_demo.prj
+-top cpu_demo
+-p xc6slx9-3-tqg144
+-opt_mode Speed
+-opt_level 1
+-ofn build/cpu_demo
+-tmpdir tmp

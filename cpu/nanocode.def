@@ -1,0 +1,342 @@
+-- 0: Illegal
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+PCInc;
+
+-- 1: M_Acc
+-- Main group, register operand
+AddressInputSel_PC RegASel_Reg RegBSel_Index AluASel_Reg AluBSel_Reg RegWriteSel_Alu RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 2: M_Imm
+-- Main group, immediate operand
+AddressInputSel_PC OperandLoad PCInc CycleCond_Data16 CycleJump2;
+AddressInputSel_PC OperandExtend PCInc;
+AddressInputSel_PC RegASel_Reg RegWriteSel_Alu AluASel_Reg AluBSel_Operand RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+
+-- 3: M_BI
+-- Main group, memory operand zp/abs, index
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_BaseAddr16 CycleJump2;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad CycleCond_Data16 CycleJump4;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc OperandExtend;
+AddressInputSel_PC RegASel_Reg RegWriteSel_Alu AluASel_Reg AluBSel_Operand RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+
+-- 4: M_ZPX
+-- Main group, memory operand (zp, X)
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad;
+AddressInputSel_OperandAddrIndexed AddressInc RegBSel_Index RegBIsIndex OperandAddrExtendFromOperand;
+AddressInputSel_OperandAddr OperandLoad CycleCond_Data16 CycleJump5;
+AddressInputSel_OperandAddr AddressInc OperandExtend;
+AddressInputSel_PC RegASel_Reg RegWriteSel_Alu AluASel_Reg AluBSel_Operand RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+
+-- 5: M_ZPY
+-- Main group, memory operand (zp), Y
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_OperandAddr OperandLoad;
+AddressInputSel_OperandAddr AddressInc OperandAddrExtendFromOperand;
+AddressInputSel_OperandAddrIndexed OperandLoad RegBSel_Index RegBIsIndex CycleCond_Data16 CycleJump5;
+AddressInputSel_OperandAddrIndexed AddressInc OperandExtend RegBSel_Index  RegBIsIndex;
+AddressInputSel_PC RegASel_Reg RegWriteSel_Alu AluASel_Reg AluBSel_Operand RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+
+-- 6: S_BI
+-- Store, memory operand zp/abs, index
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_BaseAddr16 CycleJump2;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddrIndexed RegASel_Reg RegBSel_Index RegBIsIndex MemWriteDataSel_RegAOutL MemWriteWidth_D WriteEnable CycleCond_Data16 CycleJump4;
+AddressInputSel_OperandAddrIndexed AddressInc RegASel_Reg RegBSel_Index RegBIsIndex MemWriteDataSel_RegAOutH MemWriteWidth_D WriteEnable CycleCond_Data16 CycleJump4;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+
+-- 7: S_ZPX
+-- Main group, memory operand (zp, X)
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad;
+AddressInputSel_OperandAddrIndexed AddressInc RegBSel_Index RegBIsIndex OperandAddrExtendFromOperand;
+AddressInputSel_OperandAddr RegASel_Reg MemWriteDataSel_RegAOutL MemWriteWidth_D WriteEnable CycleCond_Data16 CycleJump5;
+AddressInputSel_OperandAddr AddressInc RegASel_Reg MemWriteDataSel_RegAOutH MemWriteWidth_D WriteEnable CycleCond_Data16 CycleJump4;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+
+-- 8: S_ZPY
+-- Main group, memory operand (zp), Y
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_OperandAddr OperandLoad;
+AddressInputSel_OperandAddr AddressInc OperandAddrExtendFromOperand;
+AddressInputSel_OperandAddrIndexed RegASel_Reg RegBSel_Index RegBIsIndex MemWriteDataSel_RegAOutL MemWriteWidth_D WriteEnable CycleCond_Data16 CycleJump5;
+AddressInputSel_OperandAddrIndexed AddressInc RegASel_Reg RegBSel_Index RegBIsIndex MemWriteDataSel_RegAOutH MemWriteWidth_D WriteEnable;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+
+-- 9: RMW_Acc
+-- Shift instructions, register operand (shift or inc register by small constant in N)
+AddressInputSel_PC RegASel_Reg AluBSel_Reg RegWriteSel_Alu RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 10: RMW_Imm
+-- Shift instructions, immediate operand (shift or inc register by large constant or value in register)
+AddressInputSel_PC OperandLoad PCInc;
+AddressInputSel_PC RegASel_Reg RegBSel_Operand RegWriteSel_Alu AluBSel_RegA RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 11: RMW_BI
+-- Shift instructions, memory operand base, index
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_BaseAddr16 CycleJump2;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad CycleCond_Data16 CycleJump4;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc OperandExtend;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AluBSel_Operand MemWriteDataSel_ALUOutL MemWriteWidth_D WriteEnable FlagsWriteEnable  CycleCond_Data16 CycleJump6;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc AluBSel_Operand MemWriteDataSel_ALUOutH MemWriteWidth_D WriteEnable;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+
+-- 12: Branch
+-- Branch instructions
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_Branch;
+AddressInputSel_PC OperandAddrExtend PCInc CycleCond_Branch;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad CycleCond_Branch;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc OperandAddrExtendFromOperand CycleCond_Branch;
+AddressInputSel_SP RegASel_PC RegBSel_Zero RegBIsIndex MemWriteWidth_32 MemWriteDataSel_ALUOutH WriteEnable SPDec CycleCond_Branch;
+AddressInputSel_SP RegASel_PC RegBSel_Zero RegBIsIndex MemWriteWidth_32 MemWriteDataSel_ALUOutL WriteEnable SPDec CycleCond_Branch;
+AddressInputSel_OperandAddr PCLoad RegBSel_Index RegBIsIndex OpcodeLoad PCInc CycleCond_Always CycleJump0;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+
+-- 13: BRK
+-- BRK instruction.  Also reset and interrupts
+AddressInputSel_SP RegASel_PC MemWriteWidth_32 MemWriteDataSel_RegAOutH WriteEnable SPDec SetB;
+AddressInputSel_SP RegASel_PC MemWriteWidth_32 MemWriteDataSel_RegAOutL WriteEnable SPDec;
+AddressInputSel_SP RegASel_P MemWriteWidth_16 MemWriteDataSel_RegAOutL WriteEnable SPDec;
+AddressInputSel_Vector OperandAddrLoad;
+AddressInputSel_Vector AddressInc OperandAddrExtend;
+AddressInputSel_OperandAddr PCLoad SetI;
+AddressInputSel_PC OpcodeLoad PCInc ExitReset CycleCond_Always CycleJump0;
+0;
+
+-- 14: BSR_Acc
+-- Bit set/reset/toggle/test instructions, register operand
+AddressInputSel_PC RegASel_Reg AluASel_Reg AluBSel_One RegWriteSel_Alu RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 15: BSR_BI
+-- Bit set/reset/toggle/test instructions, memory operand base, index
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_BaseAddr16 CycleJump2;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc OperandExtend;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AluASel_Operand AluBSel_One MemWriteDataSel_ALUOutL MemWriteWidth_D WriteEnable FlagsWriteEnable;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc AluASel_Operand AluBSel_One MemWriteDataSel_ALUOutH MemWriteWidth_D WriteEnable;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+
+-- 16: JMP_Abs
+-- JMP abs
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddr PCLoad PCInc OpcodeLoad CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+
+-- 17: JMP_Ind
+-- JMP (abs)
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddr OperandLoad;
+AddressInputSel_OperandAddr AddressInc OperandAddrExtendFromOperand;
+AddressInputSel_OperandAddr PCLoad PCInc OpcodeLoad CycleCond_Always CycleJump0;
+0;
+0;
+0;
+
+-- 18: JSR_Abs
+-- JSR abs
+AddressInputSel_PC OperandAddrLoad PCInc;
+AddressInputSel_SP RegASel_PC MemWriteWidth_32 MemWriteDataSel_RegAOutH WriteEnable SPDec;
+AddressInputSel_SP RegASel_PC MemWriteWidth_32 MemWriteDataSel_RegAOutL WriteEnable SPDec;
+AddressInputSel_PC OperandAddrExtend;
+AddressInputSel_OperandAddr PCLoad OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+
+-- NOP
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 20: PHA
+AddressInputSel_SP SPDec RegASel_Reg MemWriteWidth_D WriteEnable MemWriteDataSel_RegAOutH CycleCond_Data16 CycleJump2;
+AddressInputSel_SP SPDec RegASel_Reg MemWriteWidth_D WriteEnable MemWriteDataSel_RegAOutL;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+
+-- 21: PLA
+AddressInputSel_SP AddressInc OperandLoad SPInc CycleCond_Data16 CycleJump2;
+AddressInputSel_SP AddressInc OperandExtend SPInc;
+AddressInputSel_PC RegASel_Reg RegWriteSel_Alu AluBSel_Operand RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+
+-- 22: RTI
+AddressInputSel_SP AddressInc RegASel_P RegWriteSel_Data RegWriteEnable SPInc;
+AddressInputSel_SP AddressInc OperandAddrLoad SPInc;
+AddressInputSel_SP AddressInc OperandAddrExtend SPInc;
+AddressInputSel_OperandAddr PCLoad OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+
+-- 23: RTS
+AddressInputSel_SP AddressInc OperandAddrLoad SPInc;
+AddressInputSel_SP AddressInc OperandAddrExtend SPInc;
+AddressInputSel_OperandAddr AddressInc PCLoad;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+
+-- 24: MOV
+AddressInputSel_PC RegASel_Reg RegBSel_Index AluBSel_Reg RegWriteSel_Alu RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- MD_Acc
+-- Multiply/divide instructions, register operand.  Not implemented
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- MD_Imm
+-- Multiply/divide instructions, immediate operand.  Not implemented
+AddressInputSel_PC OperandLoad PCInc CycleCond_Data16 CycleJump2;
+AddressInputSel_PC OperandExtend PCInc;
+AddressInputSel_PC RegASel_Reg AluASel_Reg AluBSel_Operand RunMulDiv CycleCond_MulDivRunning CycleJump2;
+AddressInputSel_PC RegASel_Reg RegWriteSel_MulDiv RegWriteEnable FlagsWriteEnable PCInc OpcodeLoad CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+
+-- MD_BI
+-- Multiply/divide instructions, memory operand base, index.  Not implemented
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- ID_Acc
+-- Inc/dec instruction, register operand
+AddressInputSel_PC RegASel_Reg AluBSel_N RegWriteSel_Alu RegWriteEnable FlagsWriteEnable OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- ID_BI
+-- Inc/dec instruction, memory operand base, index
+AddressInputSel_PC OperandAddrLoad PCInc CycleCond_BaseAddr16 CycleJump2;
+AddressInputSel_PC OperandAddrExtend PCInc;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex OperandLoad CycleCond_Data16 CycleJump4;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc OperandExtend;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AluASel_Operand AluBSel_N MemWriteDataSel_ALUOutL MemWriteWidth_D WriteEnable FlagsWriteEnable  CycleCond_Data16 CycleJump6;
+AddressInputSel_OperandAddrIndexed RegBSel_Index RegBIsIndex AddressInc AluASel_Operand AluBSel_N MemWriteDataSel_ALUOutH MemWriteWidth_D WriteEnable;
+AddressInputSel_PC OpcodeLoad PCInc CycleCond_Always CycleJump0;
+0;
+
+-- 30: unused
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+
+-- 31: unused
+0;
+0;
+0;
+0;
+0;
+0;
+0;
+0;

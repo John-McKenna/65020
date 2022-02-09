@@ -1,0 +1,99 @@
+ALUASel: 2
+ALUBSel: 3
+PCInc: 1
+AddressInputSel: 3
+MemWriteDataSel: 2
+WriteEnable: 1
+SPLoad: 1
+SPInc: 1
+SPDec: 1
+OperandLoad: 1
+OperandExtend: 1
+OperandAddrLoad: 1
+OperandAddrExtend: 1
+OperandAddrExtendFromOperand: 1
+AddressInc: 1
+PCLoad: 1
+OpcodeLoad: 1
+CycleCond: 3
+CycleJump: 3
+RegASel: 2
+RegBSel: 2
+RegWriteSel: 2
+RegWriteEnable: 1
+FlagsWriteEnable:1 
+MemWriteWidth: 2
+RegBIsIndex: 1
+RunMulDiv: 1
+SetI: 1
+SetB: 1
+ExitReset: 1
+===
+AluASel_Reg:ALUASel = 0
+AluASel_Operand:ALUASel = 1
+AluASel_0:ALUASel = 2
+AluASel_Sign:ALUASel = 3
+AluBSel_Reg:ALUBSel = 0
+AluBSel_Operand:ALUBSel = 1
+AluBSel_N:ALUBSel = 2
+AluBSel_One:ALUBSel = 3
+AluBSel_RegA:ALUBSel = 4
+RegASel_PC:RegASel = 0
+RegASel_P:RegASel = 1
+RegASel_Reg:RegASel = 2
+RegASel_Operand:RegASel = 3
+RegBSel_Reg:RegBSel = 0
+RegBSel_Index:RegBSel = 1
+RegBSel_Zero:RegBSel = 2
+RegBSel_Operand:RegBSel = 3
+PCInc:PCInc = 1
+AddressInputSel_PC:AddressInputSel = 0
+AddressInputSel_SP:AddressInputSel = 1
+AddressInputSel_AluOut:AddressInputSel = 2
+AddressInputSel_Vector:AddressInputSel = 3
+AddressInputSel_OperandAddrIndexed:AddressInputSel = 4
+AddressInputSel_OperandAddr:AddressInputSel = 5
+MemWriteDataSel_RegAOutL:MemWriteDataSel = 0
+MemWriteDataSel_RegAOutH:MemWriteDataSel = 1
+MemWriteDataSel_ALUOutL:MemWriteDataSel = 2
+MemWriteDataSel_ALUOutH:MemWriteDataSel = 3
+WriteEnable:WriteEnable = 1
+SPLoad:SPLoad = 1
+SPInc:SPInc = 1
+SPDec:SPDec = 1
+OperandLoad:OperandLoad = 1
+OperandExtend:OperandExtend = 1
+OperandAddrLoad:OperandAddrLoad = 1
+OperandAddrExtend:OperandAddrExtend = 1
+OperandAddrExtendFromOperand:OperandAddrExtendFromOperand = 1
+AddressInc:AddressInc = 1
+PCLoad:PCLoad = 1
+OpcodeLoad:OpcodeLoad = 1
+CycleCond_Never:CycleCond = 0
+CycleCond_Always:CycleCond = 1
+CycleCond_BaseAddr16:CycleCond = 2
+CycleCond_Data16:CycleCond = 3
+CycleCond_Branch:CycleCond = 4
+CycleCond_MulDivRunning:CycleCond = 5
+CycleJump0:CycleJump = 0
+CycleJump1:CycleJump = 1
+CycleJump2:CycleJump = 2
+CycleJump3:CycleJump = 3
+CycleJump4:CycleJump = 4
+CycleJump5:CycleJump = 5
+CycleJump6:CycleJump = 6
+CycleJump7:CycleJump = 7
+RegWriteSel_Alu:RegWriteSel = 0
+RegWriteSel_MulDiv:RegWriteSel = 1
+RegWriteSel_Data:RegWriteSel = 2
+RegWriteEnable:RegWriteEnable = 1
+FlagsWriteEnable:FlagsWriteEnable = 1
+MemWriteWidth_8:MemWriteWidth = 0
+MemWriteWidth_16:MemWriteWidth = 1
+MemWriteWidth_32:MemWriteWidth = 2
+MemWriteWidth_D:MemWriteWidth = 3
+RegBIsIndex:RegBIsIndex = 1
+RunMulDiv:RunMulDiv = 1
+SetI:SetI = 1
+SetB:SetB = 1
+ExitReset:ExitReset = 1

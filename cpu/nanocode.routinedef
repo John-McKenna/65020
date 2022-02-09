@@ -1,0 +1,47 @@
+Illegal = 0
+M_Acc = 1
+M_Imm = 2
+M_BI = 3
+M_ZPX = 4
+M_ZPY = 5
+S_BI = 6
+S_ZPX = 7
+S_ZPY = 8
+RMW_Acc = 9
+RMW_Imm = 10
+RMW_BI = 11
+Branch = 12
+BRK = 13
+BSR_Acc = 14
+BSR_BI = 15
+JMP_Abs = 16
+JMP_Ind = 17
+JSR_Abs = 18
+NOP = 19
+PHA = 20
+PLA = 21
+RTI = 22
+RTS = 23
+MOV = 24
+MD_ACC = 25
+MD_IMM = 26
+MD_BI = 27
+ID_Acc = 28
+ID_BI = 29
+===
+BRK		M_ZPX	RMW_Imm	M_Acc	Illegal	M_BI	RMW_BI	M_Imm	PHA		M_Imm	RMW_Acc	M_BI	Illegal	M_BI	RMW_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	Illegal	M_BI	RMW_BI	M_Imm	BSR_Acc	M_BI	Illegal	M_BI	M_Acc	M_BI	RMW_BI	M_BI
+JSR_Abs	M_ZPX	RMW_Imm	M_Acc	M_BI	M_BI	RMW_BI	M_Imm	PLA		M_Imm	RMW_Acc	M_BI	M_BI	M_BI	RMW_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	M_Acc	M_BI	RMW_BI	M_Imm	BSR_Acc	M_BI	M_BI	M_BI	M_Acc	M_BI	RMW_BI	M_BI
+RTI		M_ZPX	RMW_Imm	M_Acc	PHA		M_BI	RMW_BI	M_Imm	PHA		M_Imm	RMW_Acc	M_BI	JMP_Abs	M_BI	RMW_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	PHA		M_BI	RMW_BI	M_Imm	BSR_Acc	M_BI	Illegal	M_BI	M_Acc	M_BI	RMW_BI	M_BI
+RTS		M_ZPX	RMW_Imm	M_Acc	PLA		M_BI	RMW_BI	M_Imm	PLA		M_Imm	RMW_Acc	M_BI	JMP_Ind	M_BI	RMW_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	PLA		M_BI	RMW_BI	M_Imm	BSR_Acc	M_BI	Illegal	M_BI	M_Acc	M_BI	RMW_BI	M_BI
+Illegal	S_ZPX	Illegal	Illegal	S_BI	S_BI	S_BI	MD_IMM	ID_Acc	Illegal	MOV		Illegal	S_BI	S_BI	S_BI	S_BI
+Branch	S_ZPY	BSR_BI	Illegal	S_BI	S_BI	S_BI	Illegal	MOV		S_BI	MOV		Illegal	S_BI	S_BI	S_BI	BSR_Acc
+M_Imm	M_ZPX	M_Imm	Illegal	M_BI	M_BI	M_BI	Illegal	MOV		M_Imm	MOV		Illegal	M_BI	M_BI	M_BI	M_BI
+Branch	M_ZPY	BSR_BI	Illegal	M_BI	M_BI	M_BI	Illegal	BSR_Acc	M_BI	MOV		Illegal	M_BI	M_BI	M_BI	Illegal
+M_Imm	M_ZPX	Illegal	M_Acc	M_BI	M_BI	ID_BI	Illegal	ID_Acc	M_Imm	ID_Acc	Illegal	M_BI	M_BI	ID_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	Illegal	M_BI	ID_BI	Illegal	BSR_Acc	M_BI	Illegal	Illegal	M_Acc	M_BI	ID_BI	M_BI
+M_Imm	M_ZPX	Illegal	M_Acc	M_BI	M_BI	ID_BI	M_Imm	ID_Acc	M_Imm	NOP		M_BI	M_BI	M_BI	ID_BI	M_BI
+Branch	M_ZPY	BSR_BI	M_Acc	Illegal	M_BI	ID_BI	M_Imm	BSR_Acc	M_BI	Illegal	M_BI	M_Acc	M_BI	ID_BI	M_BI

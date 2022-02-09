@@ -1,0 +1,100 @@
+CSel: 2
+ShiftSel: 3
+ShifterRight: 1
+ShifterRotate: 1
+ShifterRotateWord: 1
+ShifterExtend: 1
+InvertB: 1
+ConditionalInvertB: 1
+NegAbsExtNot: 1
+FlagsFromB: 1
+ShiftSelOperandOrReg: 1
+UseShifterC: 1
+ALUOp: 3
+DefaultReg: 3
+RegMod: 3
+DefaultIndex: 3
+IndexMod: 2
+BaseAddr16: 1
+BitNum: 3
+FlagWrite: 5
+NoRegWrite: 1
+MulDivOp: 2
+DataWidthSel: 2
+Illegal: 1
+===
+CSel_0:CSel = 0
+CSel_1:CSel = 1
+CSel_C:CSel = 2
+CSel_Sign:CSel = 3
+ShiftSel_0:ShiftSel = 0
+ShiftSel_BitNum:ShiftSel = 1
+ShiftSel_Operand:ShiftSel = 2
+ShiftSel_RegA:ShiftSel = 3
+ShiftSel_N:ShiftSel = 4
+ShiftSel_1:ShiftSel = 5
+ShiftSel_RegB:ShiftSel = 6
+ShifterRight:ShifterRight = 1
+ShifterRotate:ShifterRotate = 1
+ShifterRotateWord:ShifterRotateWord = 1
+ShifterExtend:ShifterExtend = 1
+InvertB:InvertB = 1
+ConditionalInvertB:ConditionalInvertB = 1
+NegAbsExtNot:NegAbsExtNot = 1
+FlagsFromB:FlagsFromB = 1
+ShiftSelOperandOrReg:ShiftSelOperandOrReg = 1
+UseShifterC:UseShifterC = 1
+ALUOp_add:ALUOp = 0
+ALUOp_and:ALUOp = 1
+ALUOp_or:ALUOp = 2
+ALUOp_eor:ALUOp = 3
+ALUOp_inB:ALUOp = 5
+DefaultRegA0:DefaultReg = 0
+DefaultRegX0:DefaultReg = 1
+DefaultRegY0:DefaultReg = 2
+DefaultRegP:DefaultReg = 3
+DefaultRegSP:DefaultReg = 4
+DefaultRegPC:DefaultReg = 5
+RegMod_None:RegMod = 0
+RegMod_13_14:RegMod = 1
+RegMod_13_15:RegMod = 2
+RegMod_8_11:RegMod = 3
+RegMod_10_13:RegMod = 4
+RegMod_10_12:RegMod = 5
+RegMod_11_14:RegMod = 6
+RegMod_MOV:RegMod = 7
+DefaultIndexA0:DefaultIndex = 0
+DefaultIndexX0:DefaultIndex = 1
+DefaultIndexY0:DefaultIndex = 2
+DefaultIndexP:DefaultIndex = 3
+DefaultIndexPC:DefaultIndex = 4
+DefaultIndexSP:DefaultIndex = 5
+IndexMod_None:IndexMod = 0
+IndexMod_10_12:IndexMod = 1
+IndexMod_8_11:IndexMod = 2
+IndexMod_MOV:IndexMod = 3
+BaseAddr16:BaseAddr16 = 1
+BitNum_0:BitNum = 0
+BitNum_2:BitNum = 2
+BitNum_3:BitNum = 3
+BitNum_6:BitNum = 6
+FlagWrite_C:FlagWrite = 1
+FlagWrite_Z:FlagWrite = 2
+FlagWrite_V:FlagWrite = 4
+FlagWrite_N:FlagWrite = 8
+FlagWrite_ShifterC:FlagWrite = 16
+FlagWrite_NVZ:FlagWrite = 14
+FlagWrite_NZ:FlagWrite = 10
+FlagWrite_CNZ:FlagWrite = 11
+FlagWrite_CNVZ:FlagWrite = 15
+FlagWrite_SCNZ:FlagWrite = 26
+FlagWrite_SCNVZ:FlagWrite = 30
+NoRegWrite:NoRegWrite = 1
+MulDivOp_Mul:MulDivOp = 0
+MulDivOp_Div:MulDivOp = 1
+MulDivOp_Mod:MulDivOp = 2
+DataWidthSel_8:DataWidthSel = 0
+DataWidthSel_16:DataWidthSel = 1
+DataWidthSel_32:DataWidthSel = 2
+DataWidthSel_8_9:DataWidthSel = 3
+Illegal:Illegal = 1

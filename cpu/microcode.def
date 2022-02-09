@@ -1,0 +1,782 @@
+-- 00: BRK
+	DataWidthSel_32 DefaultIndexP IndexMod_None;
+	Illegal;
+-- 01: ORA A, (addr16,X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 02: ASL #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSelOperandOrReg ShiftSel_Operand FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSelOperandOrReg ShiftSel_Operand ShifterExtend FlagWrite_SCNZ;
+-- 03: ORA X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 04:
+	Illegal;
+	Illegal;
+-- 05: ORA A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 06: ASL addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterExtend FlagWrite_SCNZ;
+-- 07: ORA X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 08: PSH P
+	DataWidthSel_8_9 DefaultRegP RegMod_13_14 DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 09: ORA A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 0a: ASL reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ShiftSel_1 ALUOp_inB CSel_0 FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ShiftSel_1 ALUOp_inB CSel_0 ShifterExtend FlagWrite_SCNZ;
+-- 0b: ORA X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 0c:
+	Illegal;
+	Illegal;
+-- 0d: ORA A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 0e: ASL addr16, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterExtend FlagWrite_SCNZ;
+-- 0f: ORA X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+
+-- 10: BPL rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- 11: ORA A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 12: CBT abs, X, #0
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_0 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_0 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- 13: ORA Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 14:
+	Illegal;
+	Illegal;
+-- 15: ORA A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 16: ASL addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ShiftSel_N ALUOp_inB CSel_0 FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ShiftSel_N ALUOp_inB CSel_0 ShifterExtend FlagWrite_SCNZ;
+-- 17: ORA Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 18: CBT reg, #0
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_0 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_0 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- 19: ORA A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 1a:
+	Illegal;
+	Illegal;
+-- 1b: ORA X, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 1c: ORA A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 1d: ORA A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+-- 1e: ASL addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ShiftSel_N ALUOp_inB CSel_0 FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ShiftSel_N ALUOp_inB CSel_0 ShifterExtend FlagWrite_SCNZ;
+-- 1f: ORA Y, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_or FlagWrite_NZ;
+	Illegal;
+
+-- 20: JSR addr32
+	DataWidthSel_32 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 21: AND A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 22: ROL A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSelOperandOrReg CSel_0 ShiftSel_Operand ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSelOperandOrReg CSel_0 ShiftSel_Operand ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 23: AND X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 24: BIT addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and FlagsFromB NoRegWrite FlagWrite_NVZ;
+	Illegal;
+-- 25: AND A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 26: ROL addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 27: AND X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_and InvertB FlagWrite_NZ;
+-- 28: PUL P
+	DataWidthSel_8_9 DefaultRegP RegMod_13_14 DefaultIndexSP IndexMod_10_12 ALUOp_inB;
+	Illegal;
+-- 29: AND A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_and InvertB FlagWrite_NZ;
+-- 2a: ROL reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSel_1 CSel_0 ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSel_1 CSel_0 ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 2b: AND X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 2c: BIT addr16, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and FlagsFromB NoRegWrite FlagWrite_NVZ;
+	Illegal;
+-- 2d: AND A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 2e: ROL addr32, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 2f: AND X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+
+-- 30: BMI rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- 31: AND A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 32: SBT addr32, #0
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_0 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_0 ALUOp_eor ShiftSel_BitNum;
+-- 33: AND Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 34: BIT reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and FlagsFromB NoRegWrite FlagWrite_NVZ;
+	Illegal;
+-- 35: AND A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 36: ROL addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 37: AND Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_and InvertB FlagWrite_NZ;
+-- 38: SBT reg, #0
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_0 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_0 ALUOp_eor ShiftSel_BitNum;
+-- 39: AND A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 3a: BIT addr16, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagsFromB NoRegWrite FlagWrite_NVZ;
+	Illegal;
+-- 3b: AND Y, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 3c: AND A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 3d: AND A, addr32, X 
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 3e: ROL addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 3f: AND Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_and InvertB FlagWrite_NZ;
+-- 40: RTI
+	DataWidthSel_32 DefaultRegP RegMod_None DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 41: EOR A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 42: LSR A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSelOperandOrReg ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSelOperandOrReg ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 43: EOR X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 44: PSH X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 45: EOR A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 46: LSR addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 47: EOR X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 48: PSH A
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 49: EOR A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 4a: LSR reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSel_1 ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB CSel_0 ShiftSel_1 ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 4b: EOR X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 4c: JMP addr32
+	0;
+	Illegal;
+-- 4d: EOR A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 4e: LSR addr32, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 4f: EOR X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+
+-- 50: BVC rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- 51: EOR A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 52: CBT addr32, X, #2
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_2 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_2 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- 53: EOR Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 54: PSH Y 
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 55: EOR A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 56: LSR addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 57: EOR Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 58: CBT reg, #2
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_2 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_2 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- 59: EOR A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 5a:
+	Illegal;
+	Illegal;
+-- 5b: EOR Y, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 5c: EOR A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 5d: EOR addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+-- 5e: LSR addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB CSel_0 ShiftSel_N ShifterRight ShifterExtend FlagWrite_SCNZ;
+-- 5f: EOR Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_eor FlagWrite_NZ;
+	Illegal;
+
+-- 60: RTS
+	DataWidthSel_32 DefaultIndexSP IndexMod_10_12;
+	Illegal;
+-- 61: ADC A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 62: ROR reg, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSelOperandOrReg ShiftSel_Operand CSel_0 ShifterRight ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSelOperandOrReg ShiftSel_Operand CSel_0 ShifterRight ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 63: ADC X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 64: PUL X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexSP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- 65: ADC A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 66: ROR addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 67: ADC X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 68: PUL A
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexSP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- 69: ADC A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 6a: ROR reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSel_1 CSel_0 ShifterRight ShifterRotate FlagWrite_SCNZ ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_10_13 ALUOp_inB ShiftSel_1 CSel_0 ShifterRight ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 6b: ADC X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 6c: JMP (addr32)
+	0;
+	Illegal;
+-- 6d: ADC A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 6e: ROR addr32, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 6f: ADC X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+
+-- 70: BVS rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- 71: ADC A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 72: SBT addr32, X, #2
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_2 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_2 ALUOp_eor ShiftSel_BitNum;
+-- 73: ADC Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 74: PUL Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexSP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- 75: ADC A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 76: ROR addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRight FlagWrite_SCNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRotate ShifterRight ShifterRotateWord FlagWrite_SCNZ;
+-- 77: ADC Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 78: SBT reg, #2
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_2 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_2 ALUOp_eor ShiftSel_BitNum;
+-- 79: ADC A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 7a:
+	Illegal;
+	Illegal;
+-- 7b: ADC Y, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 7c: ADC A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 7d: ADC A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+-- 7e: ROR addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate FlagWrite_SCNZ;
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_inB ShiftSel_N CSel_0 ShifterRight ShifterRotate ShifterRotateWord FlagWrite_SCNZ;
+-- 7f: ADC Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_CNVZ;
+
+-- 80:
+	Illegal;
+	Illegal;
+-- 81: STR A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+-- 82:
+	Illegal;
+	Illegal;
+-- 83: MUL A, reg
+	DataWidthSel_8_9 Illegal;
+	Illegal;
+-- 84: STR Y addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 85: STR A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 86: STR X, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 87: MUL A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 MulDivOp_Mul FlagWrite_NZ;
+	Illegal;
+-- 88: DEC Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_10_12 ALUOp_inB NegAbsExtNot CSel_1 FlagWrite_NZ;
+-- 89:
+	Illegal;
+	Illegal;
+-- 8a: MOV A, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_MOV DefaultIndexX0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_MOV DefaultIndexX0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- 8b:
+	Illegal;
+	Illegal;
+-- 8c: STR Y, addr32, 0
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 8d: STR A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 8e: STR X, addr32, 0
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_15 DefaultIndexP IndexMod_10_12;
+	Illegal;
+-- 8f: STR X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+
+-- 90: BCC rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- 91: STR A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12;
+	Illegal;
+-- 92: CBT addr32, X, #6
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_6 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_6 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- 93:
+	Illegal;
+	Illegal;
+-- 94: STR Y, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+-- 95: STR A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+-- 96: STR X, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12 ;
+	Illegal;
+-- 97:
+	Illegal;
+	Illegal;
+-- 98: MOV A, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_MOV DefaultIndexY0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_MOV DefaultIndexY0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- 99: STR A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_15 DefaultIndexY0 IndexMod_10_12;
+	Illegal;
+-- 9a: MOV S, X
+	DataWidthSel_8_9 DefaultRegSP RegMod_MOV DefaultIndexX0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegSP RegMod_MOV DefaultIndexX0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- 9b:
+	Illegal;
+	Illegal;
+-- 9c: STR Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+-- 9d: STR A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_15 DefaultIndexX0 IndexMod_10_12;
+	Illegal;
+-- 9e: STR X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_15 DefaultIndexY0 IndexMod_10_12;
+	Illegal;
+-- 9f: SBT reg, #6
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_6 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_6 ALUOp_eor ShiftSel_BitNum;
+
+-- a0: LDR Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a1: LDR A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a2: LDR X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a3:
+	Illegal;
+	Illegal;
+-- a4: LDR Y, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a5: LDR A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a6: LDR X, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- a7:
+	Illegal;
+	Illegal;
+-- a8: MOV Y, A
+	DataWidthSel_8_9 DefaultRegY0 RegMod_MOV DefaultIndexA0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_MOV DefaultIndexA0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- a9: LDR A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- aa: MOV X, A
+	DataWidthSel_8_9 DefaultRegX0 RegMod_MOV DefaultIndexA0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_MOV DefaultIndexA0 IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- ab:
+	Illegal;
+	Illegal;
+-- ac: LDR Y, addr32, 0
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- ad: LDR A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- ae: LDR X, addr32, 0
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- af: LDR X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+
+-- b0: BCS rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- b1: LDR A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- b2: SBT addr32, X, #6
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_6 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_6 ALUOp_eor ShiftSel_BitNum;
+-- b3:
+	Illegal;
+	Illegal;
+-- b4: LDR Y, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- b5: LDR A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- b6: LDR X, addr16, Y
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- b7:
+	Illegal;
+	Illegal;
+-- b8: CBT reg, #6
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_6 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_6 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- b9: LDR A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- ba: MOV X, S
+	DataWidthSel_8_9 DefaultRegX0 RegMod_MOV DefaultIndexSP IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_MOV DefaultIndexSP IndexMod_MOV ALUOp_inB FlagWrite_NZ;
+-- bb:
+	Illegal;
+	Illegal;
+-- bc: LDR Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- bd: LDR A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- be: LDR X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_inB FlagWrite_NZ;
+	Illegal;
+-- bf:
+	Illegal;
+	Illegal;
+
+-- c0: CMP Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- c1: CMP A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- c2:
+	Illegal;
+	Illegal;
+-- c3: CMP X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- c4: CMP Y, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- c5: CMP A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- c6: DEC addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_add NegAbsExtNot CSel_1 FlagWrite_NZ;
+-- c7:
+	Illegal;
+	Illegal;
+-- c8: INC Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- c9: CMP A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- ca: DEC X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_10_12 ALUOp_inB NegAbsExtNot CSel_1 FlagWrite_NZ;
+-- cb:
+	Illegal;
+	Illegal;
+-- cc: CMP Y, addr32, 0
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- cd: CMP A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- ce: DEC addr32, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_add NegAbsExtNot CSel_1 FlagWrite_NZ;
+-- cf: CMP X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+
+-- d0: BNE rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- d1: CMP A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- d2: CBT addr32, X, #3
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_3 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_3 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- d3: CMP Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- d4:
+	Illegal;
+	Illegal;
+-- d5: CMP A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- d6: DEC addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_add NegAbsExtNot CSel_1 FlagWrite_NZ;
+-- d7:
+	Illegal;
+	Illegal;
+-- d8: CBT reg, #3
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_3 InvertB ALUOp_and ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_3 ALUOp_and ShiftSel_BitNum NoRegWrite FlagWrite_Z;
+-- d9: CMP A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- da:
+	Illegal;
+	Illegal;
+-- db:
+	Illegal;
+	Illegal;
+-- dc: CMP A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- dd: CMP A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- de: DEC addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_NZ;
+	Illegal;
+-- df: CMP Y, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_0 FlagWrite_CNZ;
+
+-- e0: CMP X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- e1: SBC A, (addr16, X)
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- e2:
+	Illegal;
+	Illegal;
+-- e3: SBC X, reg
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNZ;
+-- e4: CMP X, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- e5: SBC A, addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- e6: INC addr16, 0
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- e7: SBC X, #imm
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- e8: INC X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- e9: SBC A, #imm
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_11_14 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- ea: NOP
+	0;
+	Illegal;
+-- eb: SBC X, addr32, Y
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- ec: CMP X, addr32, 0
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_1 FlagWrite_CNZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB NoRegWrite CSel_C FlagWrite_CNZ;
+-- ed: SBC A, addr32, 0
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexP IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- ee: INC addr32, 0
+	DataWidthSel_8_9 DefaultIndexP IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- ef: SBC X, addr32, X
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegX0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+
+-- f0: BEQ rel
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+	DataWidthSel_32 ALUOp_add InvertB CSel_0 DefaultIndexPC IndexMod_8_11;
+-- f1: SBC A, (addr16), Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- f2: SBT addr32, X, #3
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_3 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultIndexA0 IndexMod_8_11 BitNum_3 ALUOp_eor ShiftSel_BitNum;
+-- f3: SBC Y, reg
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- f4:
+	Illegal;
+	Illegal;
+-- f5: SBC A, addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 BaseAddr16 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- f6: INC addr16, X
+	DataWidthSel_8_9 BaseAddr16 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- f7: SBC Y, #imm
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- f8: SBT reg, #3
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_3 ALUOp_or ShiftSel_BitNum;
+	DataWidthSel_32 DefaultRegP RegMod_8_11 BitNum_3 ALUOp_eor ShiftSel_BitNum;
+-- f9: SBC A, addr32, Y
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- fa:
+	Illegal;
+	Illegal;
+-- fb: SBC Y, addr32, Y
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexY0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- fc: SBC A, reg
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexA0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- fd: SBC A, addr32, X
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegA0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
+-- fe: INC addr32, X
+	DataWidthSel_8_9 DefaultIndexX0 IndexMod_10_12 ALUOp_add CSel_0 FlagWrite_NZ;
+	Illegal;
+-- ff: SBC Y, addr32, X
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_C FlagWrite_CNVZ;
+	DataWidthSel_8_9 DefaultRegY0 RegMod_13_14 DefaultIndexX0 IndexMod_10_12 ALUOp_add InvertB CSel_1 FlagWrite_CNVZ;
